@@ -1,15 +1,8 @@
-{ stdenv, oomox }:
+{ oomox }:
 
-stdenv.mkDerivation {
-  pname = "oomox-plugin-import-image";
-  inherit (oomox) version src;
+oomox.buildPlugin {
+  name = "import-image";
+  pythonDeps = ps: with ps; [ pillow ];
 
-  dontBuild = true;
-
-  installFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
   installTargets = [ "install_import_images" ];
-
-  passthru = {
-    pythonDeps = ps: with ps; [ pillow ];
-  };
 }

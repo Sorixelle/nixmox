@@ -1,4 +1,5 @@
 { symlinkJoin
+, pkgs
 
 , unwrapped
 , withPlugins
@@ -14,6 +15,7 @@ let
   basePkg = unwrapped.overrideAttrs (_: {
     passthru = {
       inherit withPlugins;
+      buildPlugin = pkgs.callPackage ./plugins/build-plugin.nix { };
     };
   });
 in

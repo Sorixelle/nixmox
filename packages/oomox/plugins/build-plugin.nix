@@ -2,7 +2,7 @@
 
 { name
 , installTargets
-, pythonDeps
+, pythonDeps ? (_: [ ])
 , ...
 }@_args:
 

@@ -6,9 +6,7 @@ final: prev:
     withPlugins = plugins: final.oomox.override { inherit plugins; };
   };
 
-  oomoxFull = final.oomox.withPlugins (with final.oomoxPlugins; [
-    import-image
-  ]);
+  oomoxFull = final.oomox.withPlugins (builtins.attrValues final.oomoxPlugins);
 
   oomoxPlugins = import ./packages/oomox/plugins { pkgs = final; };
 }

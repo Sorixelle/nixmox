@@ -24,7 +24,7 @@
     in
     {
       packages = {
-        inherit (pkgs) oomox;
+        inherit (pkgs) oomox oomoxFull oomoxPlugins;
       };
 
       checks = {

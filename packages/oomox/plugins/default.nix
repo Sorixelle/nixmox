@@ -1,11 +1,5 @@
-{
-  image = {
-    makeTargets = [ "install_import_images" ];
-    pythonPackages = ps: [ ps.pillow ];
-  };
+{ pkgs }:
 
-  xresources = {
-    makeTargets = [ "install_import_xresources" "install_export_xresources" ];
-    buildInputs = pkgs: [ pkgs.xorg.xrdb ];
-  };
+{
+  import-image = pkgs.callPackage ./import-image.nix { };
 }

@@ -1,0 +1,18 @@
+Allow setting SCRIPT_DIR in config from env var
+
+Because our derivation makes use of symlinkJoin, os.realpath is going to
+point at the unwrapped oomox. As a result, the application won't see the
+plugins that we've added into the derivation with symlinkJoin. Adding an
+environment variable lets us override this default path through the
+generated wrapper script.
+
+--- a/oomox_gui/config.py
++++ b/oomox_gui/config.py
+@@ -1,7 +1,7 @@
+ import os
+
+
+-SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
++SCRIPT_DIR = os.getenv('OOMOX_SCRIPT_DIR', os.path.dirname(os.path.realpath(__file__)))
+
+ OOMOX_ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "../"))

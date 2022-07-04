@@ -22,10 +22,7 @@ in
 if builtins.length plugins == 0 then basePkg else
 (basePkg.override {
   extraPythonDeps =
-    let
-      pluginsWithDeps = builtins.filter (p: p ? pythonDeps) plugins;
-    in
-    ps: builtins.concatMap (p: p.pythonDeps ps) pluginsWithDeps;
+    ps: builtins.concatMap (p: if p ? pythonDeps then p.pythonDeps ps else [ ]) plugins;
 }).overrideAttrs (old: {
   name = "${old.pname}-${old.version}-with-plugins";
 

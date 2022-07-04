@@ -19,6 +19,6 @@ stdenv.mkDerivation ({
   inherit installTargets;
 
   passthru = {
-    pythonDeps = ps: with ps; [ pillow ];
+    inherit pythonDeps;
   };
 } // args)

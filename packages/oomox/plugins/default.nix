@@ -30,6 +30,7 @@ in
   icons-gnome-colors = pkgs.callPackage ./icons-gnome-colors.nix { };
   icons-numix = pkgs.callPackage ./icons-numix.nix { };
   icons-papirus = pkgs.callPackage ./icons-papirus.nix { };
+  icons-suruplus = pkgs.callPackage ./icons-suruplus.nix { };
 
   theme-materia = pkgs.callPackage ./theme-materia.nix { };
   theme-oomox = pkgs.callPackage ./theme-oomox.nix { };

@@ -1,0 +1,10 @@
+--- a/change_color.sh
++++ b/change_color.sh
+@@ -120,6 +120,7 @@ SURUPLUS_GRADIENT_ENABLED=$(echo "${SURUPLUS_GRADIENT_ENABLED-False}" | tr '[:up
+
+ echo ":: Copying theme template..."
+ cp -R "$root/suru-plus/Suru++" "$tmp_dir/"
++chmod -R u+w "$tmp_dir"
+ echo "== Template was copied to $tmp_dir"
+
+

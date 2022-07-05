@@ -25,4 +25,5 @@ in
   };
 
   theme-materia = pkgs.callPackage ./theme-materia.nix { };
+  theme-oomox = pkgs.callPackage ./theme-oomox.nix { };
 }

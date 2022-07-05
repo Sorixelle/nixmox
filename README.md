@@ -18,7 +18,7 @@ If you're not using flakes, you can pull the `default.nix` file in the root of t
 
 ``` nix
 let
-  nixmox = builtins.fetchTarball { url = "https://github.com/Sorixelle/nixmox/archive/<commit_hash>.tar.gz" };
+  nixmox = builtins.fetchTarball { url = "https://github.com/Sorixelle/nixmox/archive/<commit_hash>.tar.gz"; };
 in ...
 ```
 
@@ -37,11 +37,13 @@ There's also a Nixpkgs overlay, defined at `overlay` that contains the same pack
 To add plugins to the built oomox derivation, you can use `oomox.withPlugins` like so:
 
 ``` nix
-oomoxWithPlugins = oomox.withPlugins (ps: [
-  ps.base64
-  ps.icons-suruplus
-  ps.theme-materia
-])
+{
+  oomoxWithPlugins = oomox.withPlugins (ps: [
+    ps.base64
+    ps.icons-suruplus
+    ps.theme-materia
+  ])
+}
 ```
 
 List of currently avaliable plugins:

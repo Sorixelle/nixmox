@@ -1,0 +1,25 @@
+diff --git a/change_color.sh b/change_color.sh
+index 11c79e0..d9e08ae 100755
+--- a/change_color.sh
++++ b/change_color.sh
+@@ -102,6 +102,7 @@ trap post_clean_up EXIT SIGHUP SIGINT SIGTERM
+ 
+ 
+ cp -r "${root}/gnome-colors/"* "${tmp_dir}/"
++chmod -R u+w "${tmp_dir}"
+ cd "${tmp_dir}"
+ 
+ cat > ./themes/"${OUTPUT_THEME_NAME}" <<EOF
+diff --git a/gnome-colors/Makefile b/gnome-colors/Makefile
+index a0d7ade..d82a2c8 100644
+--- a/gnome-colors/Makefile
++++ b/gnome-colors/Makefile
+@@ -13,7 +13,7 @@ INKSCAPE := $(shell which inkscape)
+ $(info using `inkscape`)
+ else
+ ifeq ($(USE_RESVG), 1)
+-RENDERSVG := $(shell which rendersvg)
++RENDERSVG := $(shell which resvg)
+ ifeq ($(RENDERSVG),)
+ $(info `resvg` not found, using `rsvg-convert` instead)
+ else

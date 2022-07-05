@@ -24,6 +24,8 @@ in
     installTargets = [ "install_import_xresources" ];
   };
 
+  base16 = pkgs.callPackage ./base16.nix { };
+
   theme-materia = pkgs.callPackage ./theme-materia.nix { };
   theme-oomox = pkgs.callPackage ./theme-oomox.nix { };
 }

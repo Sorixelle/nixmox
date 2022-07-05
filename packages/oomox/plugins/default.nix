@@ -26,6 +26,8 @@ in
 
   base16 = pkgs.callPackage ./base16.nix { };
 
+  icons-archdroid = pkgs.callPackage ./icons-archdroid.nix { };
+
   theme-materia = pkgs.callPackage ./theme-materia.nix { };
   theme-oomox = pkgs.callPackage ./theme-oomox.nix { };
 }

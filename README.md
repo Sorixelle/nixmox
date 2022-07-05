@@ -1,6 +1,6 @@
 # nixmox
 
-Utilities for creating GTK+ and icon themes with [Oomox/Themix project tools](https://github.com/themix-project/oomox)
+Nix utilities for creating GTK+ and icon themes with [Oomox/Themix project tools](https://github.com/themix-project/oomox)
 
 ## Getting started
 

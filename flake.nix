@@ -1,5 +1,5 @@
 {
-  description = "Utilities for creating GTK+ themes with Themix project tools";
+  description = "Utilities for creating GTK+ and icon themes with Oomox/Themix project tools";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";

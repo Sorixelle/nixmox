@@ -29,6 +29,7 @@ in
   icons-archdroid = pkgs.callPackage ./icons-archdroid.nix { };
   icons-gnome-colors = pkgs.callPackage ./icons-gnome-colors.nix { };
   icons-numix = pkgs.callPackage ./icons-numix.nix { };
+  icons-papirus = pkgs.callPackage ./icons-papirus.nix { };
 
   theme-materia = pkgs.callPackage ./theme-materia.nix { };
   theme-oomox = pkgs.callPackage ./theme-oomox.nix { };

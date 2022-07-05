@@ -11,6 +11,10 @@
         flake-utils.follows = "flake-utils";
       };
     };
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, flake-utils, pre-commit-hooks, ... }: {

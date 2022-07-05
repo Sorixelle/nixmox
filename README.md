@@ -24,7 +24,7 @@ in ...
 
 ## Usage
 
-All packages provided are defined on `packages.<system>`:
+All packages provided are defined on `packages.<system>`, or added to Nixpkgs if using the overlay:
 
 - `oomox` - The base oomox GUI package. It doesn't contain any plugins - see the Plugins section below for how to add some.
 - `oomoxFull` - The oomox GUI + all known plugins. Useful if you just want access to everything without going through manual customization steps.
@@ -37,10 +37,10 @@ There's also a Nixpkgs overlay, defined at `overlay` that contains the same pack
 To add plugins to the built oomox derivation, you can use `oomox.withPlugins` like so:
 
 ``` nix
-oomoxWithPlugins = oomox.withPlugins (with oomoxPlugins; [
-  base64
-  icons-suruplus
-  theme-materia
+oomoxWithPlugins = oomox.withPlugins (ps: [
+  ps.base64
+  ps.icons-suruplus
+  ps.theme-materia
 ])
 ```
 

@@ -26,9 +26,12 @@ if builtins.length plugins == 0 then basePkg else
 }).overrideAttrs (old: {
   name = "${old.pname}-${old.version}-with-plugins";
 
+  buildInputs = old.buildInputs ++ plugins;
+
   preFixup = ''
     gappsWrapperArgs+=(
       --set OOMOX_SCRIPT_DIR "${allPlugins}/opt/oomox/oomox_gui"
+      --set PATH "$PATH"
     )
   '';
 

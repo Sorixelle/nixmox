@@ -23,4 +23,6 @@ in
 
     installTargets = [ "install_import_xresources" ];
   };
+
+  theme-materia = pkgs.callPackage ./theme-materia.nix { };
 }

@@ -1,0 +1,89 @@
+diff --git a/change_color.sh b/change_color.sh
+index d9d5de08..bb7b863d 100755
+--- a/change_color.sh
++++ b/change_color.sh
+@@ -95,7 +95,7 @@ for FILEPATH in "${PATHLIST[@]}"; do
+ done
+ 
+ OPTION_GTK2_HIDPI=$(tr '[:upper:]' '[:lower:]' <<< "${OPTION_GTK2_HIDPI-False}")
+-OPTION_FORCE_INKSCAPE=$(tr '[:upper:]' '[:lower:]' <<< "${OPTION_FORCE_INKSCAPE-True}")
++OPTION_FORCE_INKSCAPE=$(tr '[:upper:]' '[:lower:]' <<< "${OPTION_FORCE_INKSCAPE-False}")
+ 
+ 
+ if [[ "$THEME" == */* ]] || [[ "$THEME" == *.* ]]; then
+@@ -160,6 +160,7 @@ post_clean_up() {
+ trap post_clean_up EXIT SIGHUP SIGINT SIGTERM
+ cp -r "$SRC_PATH/"* "$tempdir/"
+ cd "$tempdir"
++chmod -R +w "$tempdir"
+ 
+ 
+ # autodetection which color variant to use
+diff --git a/render-assets.sh b/render-assets.sh
+index e401281d..3290d9d0 100755
+--- a/render-assets.sh
++++ b/render-assets.sh
+@@ -1,7 +1,7 @@
+ #!/bin/bash
+ set -ueo pipefail
+ 
+-if [[ ! "$(command -v inkscape || command -v rendersvg)" ]]; then
++if [[ ! "$(command -v inkscape || command -v resvg)" ]]; then
+   echo "'inkscape' or 'resvg' needs to be installed to generate the PNG."
+   exit 1
+ fi
+diff --git a/src/chrome/render-asset.sh b/src/chrome/render-asset.sh
+index 9311b1d8..0fbff9fc 100755
+--- a/src/chrome/render-asset.sh
++++ b/src/chrome/render-asset.sh
+@@ -5,7 +5,7 @@ FORCE_INKSCAPE="$(echo "${FORCE_INKSCAPE-False}" | tr '[:upper:]' '[:lower:]')"
+ if [[ "${FORCE_INKSCAPE}" == "true" ]]; then
+   RENDER_SVG=""
+ else
+-  RENDER_SVG="$(command -v rendersvg)" || true
++  RENDER_SVG="$(command -v resvg)" || true
+ fi
+ INKSCAPE="$(command -v inkscape)" || true
+ OPTIPNG="$(command -v optipng)" || true
+diff --git a/src/gtk-2.0/assets.txt b/src/gtk-2.0/assets.txt
+index f951d5bb..a879f99b 100644
+--- a/src/gtk-2.0/assets.txt
++++ b/src/gtk-2.0/assets.txt
+@@ -98,11 +98,7 @@ scrollbar-vert-rtl-slider-active
+ scrollbar-vert-rtl-slider-disabled
+ scrollbar-vert-rtl-trough
+ handle-horz
+-handle-horz-hover
+-handle-horz-active
+ handle-vert
+-handle-vert-hover
+-handle-vert-active
+ pan-up
+ pan-up-disabled
+ pan-up-alt
+diff --git a/src/gtk-2.0/render-asset.sh b/src/gtk-2.0/render-asset.sh
+index 4cfe02e1..d7883333 100755
+--- a/src/gtk-2.0/render-asset.sh
++++ b/src/gtk-2.0/render-asset.sh
+@@ -5,7 +5,7 @@ FORCE_INKSCAPE="$(echo "${FORCE_INKSCAPE-False}" | tr '[:upper:]' '[:lower:]')"
+ if [[ "${FORCE_INKSCAPE}" == "true" ]]; then
+ 	RENDER_SVG=""
+ else
+-	RENDER_SVG="$(command -v rendersvg)" || true
++	RENDER_SVG="$(command -v resvg)" || true
+ fi
+ INKSCAPE="$(command -v inkscape)" || true
+ OPTIPNG="$(command -v optipng)" || true
+diff --git a/src/gtk-3.0/render-asset.sh b/src/gtk-3.0/render-asset.sh
+index 6ccb8d2d..ad4b5a7d 100755
+--- a/src/gtk-3.0/render-asset.sh
++++ b/src/gtk-3.0/render-asset.sh
+@@ -5,7 +5,7 @@ FORCE_INKSCAPE="$(echo "${FORCE_INKSCAPE-False}" | tr '[:upper:]' '[:lower:]')"
+ if [[ "${FORCE_INKSCAPE}" == "true" ]]; then
+   RENDER_SVG=""
+ else
+-  RENDER_SVG="$(command -v rendersvg)" || true
++  RENDER_SVG="$(command -v resvg)" || true
+ fi
+ INKSCAPE="$(command -v inkscape)" || true
+ OPTIPNG="$(command -v optipng)" || true

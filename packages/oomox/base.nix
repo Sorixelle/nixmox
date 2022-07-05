@@ -41,6 +41,11 @@ stdenv.mkDerivation rec {
       --replace "cd " "cd $out"
   '';
 
+  # Some plugins bring in meson/ninja as a propagated dep - don't run their hook
+  dontUseMesonConfigure = true;
+  dontUseNinjaBuild = true;
+  dontUseNinjaInstall = true;
+  dontUseNinjaCheck = true;
   dontBuild = true;
 
   installFlags = [ "DESTDIR=$(out)" "PREFIX=" ];

@@ -42,7 +42,7 @@ To add plugins to the built oomox derivation, you can use `oomox.withPlugins` li
     ps.base64
     ps.icons-suruplus
     ps.theme-materia
-  ])
+  ]);
 }
 ```
 

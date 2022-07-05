@@ -22,7 +22,7 @@ oomox.buildPlugin {
   postInstall = ''
     cd $out/opt/oomox/plugins/theme_materia/materia-theme
     cp -r $materiaThemeSrc/* .
-    chmod -R +w *
+    chmod -R u+w *
     patch -p1 < $materiaThemePatch
   '';
 }

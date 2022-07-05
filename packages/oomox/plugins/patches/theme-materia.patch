@@ -15,7 +15,7 @@ index d9d5de08..bb7b863d 100755
  trap post_clean_up EXIT SIGHUP SIGINT SIGTERM
  cp -r "$SRC_PATH/"* "$tempdir/"
  cd "$tempdir"
-+chmod -R +w "$tempdir"
++chmod -R u+w "$tempdir"
  
  
  # autodetection which color variant to use

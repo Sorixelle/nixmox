@@ -18,7 +18,7 @@ oomox.buildPlugin {
     patch -p1 < $papirusIconsPatch
 
     cd papirus-icon-theme
-    cp -r $papirusIconsSrc/* .
+    ln -s $papirusIconsSrc/* .
   '';
 
   generateThemeType = "icon";

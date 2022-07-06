@@ -17,8 +17,17 @@ oomox.buildPlugin {
 
   preInstall = ''
     pushd plugins/theme_oomox/
-    cp -r $oomoxThemeSrc/* .
+
+    rsync -a --exclude=src $oomoxThemeSrc/* .
     chmod -R u+w *
+
+    mkdir src
+    pushd src
+    for file in $oomoxThemeSrc/src/*; do
+      ln -s $file .
+    done
+    popd
+
     patch -p1 < $oomoxThemePatch
     popd
   '';

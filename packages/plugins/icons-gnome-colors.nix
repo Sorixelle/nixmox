@@ -17,10 +17,23 @@ oomox.buildPlugin {
 
   postInstall = ''
     cd $out/opt/oomox/plugins/icons_gnomecolors/gnome-colors-icon-theme
-    cp -r $gnomeColorsIconsSrc/* .
-    chmod -R u+w *
-    patch -p1 < $gnomeColorsIconsPatch
 
+    for file in $gnomeColorsIconsSrc/*; do
+      ln -s $file .
+    done
+
+    rm change_color.sh gnome-colors
+    mkdir gnome-colors
+    for file in $gnomeColorsIconsSrc/gnome-colors/*; do
+      ln -s $file gnome-colors/
+    done
+    rm gnome-colors/Makefile
+
+    cp $gnomeColorsIconsSrc/change_color.sh .
+    cp $gnomeColorsIconsSrc/gnome-colors/Makefile gnome-colors/
+    chmod u+w change_color.sh gnome-colors/Makefile
+
+    patch -p1 < $gnomeColorsIconsPatch
     substituteInPlace $out/bin/oomox-gnome-colors-icons-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
 

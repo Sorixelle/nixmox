@@ -1,10 +1,14 @@
 --- a/change_color.sh
 +++ b/change_color.sh
-@@ -117,6 +117,8 @@ echo ":: Copying theme template..."
+@@ -115,8 +115,10 @@ NUMIX_SHAPE="${ICONS_NUMIX_SHAPE-normal}"  # normal | circle | square
+
+ echo ":: Copying theme template..."
  #cp -r /usr/share/icons/Numix "${tmp_dir}"/
- cp -r "${root}/numix-icon-theme/Numix" "${tmp_dir}"/
+-cp -r "${root}/numix-icon-theme/Numix" "${tmp_dir}"/
+-cp -r "${root}/numix-folders/styles/${NUMIX_STYLE}/"* "${tmp_dir}"/
++rsync -a --copy-unsafe-links "${root}/numix-icon-theme/Numix" "${tmp_dir}"/
 +chmod -R u+w "${tmp_dir}"
- cp -r "${root}/numix-folders/styles/${NUMIX_STYLE}/"* "${tmp_dir}"/
++rsync -a --copy-unsafe-links "${root}/numix-folders/styles/${NUMIX_STYLE}/"* "${tmp_dir}"/
 +chmod -R u+w "${tmp_dir}"
  echo "== Template was copied to ${tmp_dir}"
 

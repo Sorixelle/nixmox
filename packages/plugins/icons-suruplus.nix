@@ -18,7 +18,7 @@ oomox.buildPlugin {
     patch -p1 < $suruplusIconsPatch
 
     cd suru-plus
-    cp -r $suruplusIconsSrc/* .
+    ln -s $suruplusIconsSrc/* .
   '';
 
   generateThemeType = "icon";

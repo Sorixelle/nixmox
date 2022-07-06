@@ -1,5 +1,5 @@
 diff --git a/change_color.sh b/change_color.sh
-index d9d5de08..bb7b863d 100755
+index d9d5de08..83bfe833 100755
 --- a/change_color.sh
 +++ b/change_color.sh
 @@ -95,7 +95,7 @@ for FILEPATH in "${PATHLIST[@]}"; do
@@ -11,14 +11,25 @@ index d9d5de08..bb7b863d 100755
  
  
  if [[ "$THEME" == */* ]] || [[ "$THEME" == *.* ]]; then
-@@ -160,6 +160,7 @@ post_clean_up() {
+@@ -158,8 +158,9 @@ post_clean_up() {
+   rm -r "$tempdir" || :
+ }
  trap post_clean_up EXIT SIGHUP SIGINT SIGTERM
- cp -r "$SRC_PATH/"* "$tempdir/"
+-cp -r "$SRC_PATH/"* "$tempdir/"
++rsync -a --copy-unsafe-links "$SRC_PATH/"* "$tempdir/"
  cd "$tempdir"
-+chmod -R u+w "$tempdir"
++chmod -R +w "$tempdir"
  
  
  # autodetection which color variant to use
+@@ -303,6 +304,7 @@ FORCE_INKSCAPE="$OPTION_FORCE_INKSCAPE" ./render-assets.sh gtk
+ meson _build -Dprefix="$tempdir" -Dcolors="$COLOR_VARIANT" -Dsizes="$SIZE_VARIANT"
+ meson install -C _build
+ GENERATED_PATH="$tempdir/share/themes/Materia$COLOR_SUFFIX$SIZE_SUFFIX"
++chmod -R u+w $GENERATED_PATH
+ if [[ -d "$DEST_PATH" ]]; then
+ 	rm -r "$DEST_PATH"
+ elif [[ ! -d "$(dirname "$DEST_PATH")" ]]; then
 diff --git a/render-assets.sh b/render-assets.sh
 index e401281d..3290d9d0 100755
 --- a/render-assets.sh
@@ -32,6 +43,26 @@ index e401281d..3290d9d0 100755
    echo "'inkscape' or 'resvg' needs to be installed to generate the PNG."
    exit 1
  fi
+diff --git a/scripts/darker.sh b/scripts/darker.sh
+index b9514a40..302e12ea 100755
+--- a/scripts/darker.sh
++++ b/scripts/darker.sh
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env bash
++#!/bin/bash
+ set -ueo pipefail
+ #set -x
+ 
+diff --git a/scripts/mix.sh b/scripts/mix.sh
+index 73c1950c..28f34528 100755
+--- a/scripts/mix.sh
++++ b/scripts/mix.sh
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env bash
++#!/bin/bash
+ set -ueo pipefail
+ #set -x
+ 
 diff --git a/src/chrome/render-asset.sh b/src/chrome/render-asset.sh
 index 9311b1d8..0fbff9fc 100755
 --- a/src/chrome/render-asset.sh

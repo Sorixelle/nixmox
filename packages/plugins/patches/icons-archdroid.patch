@@ -1,11 +1,13 @@
 diff --git a/change_color.sh b/change_color.sh
-index 9b1825581..5341195f6 100755
+index 9b1825581..8e0bb8e61 100755
 --- a/change_color.sh
 +++ b/change_color.sh
-@@ -71,6 +71,7 @@ if [[ -d "${output_dir}" ]] ; then
+@@ -70,7 +70,8 @@ if [[ -d "${output_dir}" ]] ; then
+ 	rm -r "${output_dir}"
  fi
  mkdir -p "${output_dir}"
- cp -r "${root}/archdroid-icon-theme/"* "${output_dir}"/
+-cp -r "${root}/archdroid-icon-theme/"* "${output_dir}"/
++rsync -a --copy-unsafe-links "${root}/archdroid-icon-theme/"* "${output_dir}"/
 +chmod -R u+w "${output_dir}"
  echo "== Template was copied to ${output_dir}"
  

@@ -21,8 +21,49 @@ oomox.buildPlugin {
 
   postInstall = ''
     cd $out/opt/oomox/plugins/theme_materia/materia-theme
-    cp -r $materiaThemeSrc/* .
-    chmod -R u+w *
+
+    for file in $materiaThemeSrc/*; do
+      ln -s $file .
+    done
+
+    rm change_color.sh render-assets.sh src scripts
+    cp -r $materiaThemeSrc/{change_color.sh,render-assets.sh,scripts} .
+    chmod -R u+w change_color.sh render-assets.sh scripts
+
+    mkdir src
+    cd src
+    for file in $materiaThemeSrc/src/*; do
+      ln -s $file .
+    done
+
+    rm chrome gtk-2.0 gtk-3.0
+    mkdir chrome gtk-2.0 gtk-3.0
+
+    cd chrome
+    for file in $materiaThemeSrc/src/chrome/*; do
+      ln -s $file .
+    done
+    rm render-asset{,s}.sh
+    cp $materiaThemeSrc/src/chrome/render-asset{,s}.sh .
+    chmod u+w render-asset.sh
+
+    cd ../gtk-2.0
+    for file in $materiaThemeSrc/src/gtk-2.0/*; do
+      ln -s $file .
+    done
+    rm assets.txt render-asset{,s}.sh
+    cp $materiaThemeSrc/src/gtk-2.0/{assets.txt,render-asset{,s}.sh} .
+    chmod u+w assets.txt render-asset.sh
+
+    cd ../gtk-3.0
+    for file in $materiaThemeSrc/src/gtk-3.0/*; do
+      ln -s $file .
+    done
+    rm render-asset{,s}.sh
+    cp $materiaThemeSrc/src/gtk-3.0/render-asset{,s}.sh .
+    chmod u+w render-asset.sh
+
+    cd ../../
     patch -p1 < $materiaThemePatch
 
     substituteInPlace $out/bin/oomox-materia-cli --replace "/opt/oomox/" "$out/opt/oomox/"

@@ -1,14 +1,17 @@
 diff --git a/change_color.sh b/change_color.sh
-index 03c53bc7..0ac3439c 100755
+index 03c53bc7..cd175b26 100755
 --- a/change_color.sh
 +++ b/change_color.sh
-@@ -212,9 +212,11 @@ rm -fr "$DEST_PATH"
+@@ -211,10 +211,12 @@ test "$SRC_PATH" = "$DEST_PATH" && echo "can't do that" && exit 1
+ rm -fr "$DEST_PATH"
  mkdir -p "$DEST_PATH"
  echo -e "\nBuilding theme at $DEST_PATH\n"
- cp -r "$SRC_PATH/src/index.theme" "$DEST_PATH"
+-cp -r "$SRC_PATH/src/index.theme" "$DEST_PATH"
++rsync -a --copy-unsafe-links "$SRC_PATH/src/index.theme" "$DEST_PATH"
 +chmod -R u+w "$DEST_PATH"
  for FILEPATH in "${PATHLIST[@]}"; do
- 	cp -r "$SRC_PATH/$FILEPATH" "$DEST_PATH"
+-	cp -r "$SRC_PATH/$FILEPATH" "$DEST_PATH"
++	rsync -a --copy-unsafe-links "$SRC_PATH/$FILEPATH" "$DEST_PATH"
  done
 +chmod -R u+w "$DEST_PATH"
  

@@ -1,7 +1,8 @@
-{ stdenv, lib, runCommandWith, oomox }:
+{ stdenv, lib, runCommandWith, oomox, rsync }:
 
 { name
 , installTargets
+, propagatedBuildInputs ? [ ]
 , pythonDeps ? (_: [ ])
 , generateThemeType ? "theme"
 , generateCmd ? ""
@@ -10,11 +11,13 @@
 }@_args:
 
 let
-  args = builtins.removeAttrs _args [ "name" "installTargets" "pythonDeps" "generateThemeType" "generateCmd" "generateParamsSpec" ];
+  args = builtins.removeAttrs _args [ "name" "installTargets" "propagatedBuildInputs" "pythonDeps" "generateThemeType" "generateCmd" "generateParamsSpec" ];
 
   plugin = stdenv.mkDerivation ({
     pname = "oomox-plugin-${name}";
     inherit (oomox) version src;
+
+    propagatedBuildInputs = [ rsync ] ++ propagatedBuildInputs;
 
     dontBuild = true;
 

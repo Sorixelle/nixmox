@@ -26,10 +26,10 @@ oomox.buildPlugin {
     patch -p1 < $numixIconsPatch
 
     cd numix-icon-theme
-    cp -r $numixIconsSrc/* .
+    ln -s $numixIconsSrc/* .
 
     cd ../numix-folders
-    cp -r $numixFoldersSrc/* .
+    ln -s $numixFoldersSrc/* .
   '';
 
   generateThemeType = "icon";

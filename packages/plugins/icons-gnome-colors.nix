@@ -1,4 +1,4 @@
-{ oomox, fetchFromGitHub, bc, resvg }:
+{ oomox, fetchFromGitHub, bc, librsvg }:
 
 oomox.buildPlugin {
   name = "icons-gnome-colors";
@@ -11,7 +11,7 @@ oomox.buildPlugin {
   };
   gnomeColorsIconsPatch = ./patches/icons-gnomecolors.patch;
 
-  propagatedBuildInputs = [ bc resvg ];
+  propagatedBuildInputs = [ bc librsvg ];
 
   installTargets = [ "install_icons_gnomecolors" ];
 

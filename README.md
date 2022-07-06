@@ -61,6 +61,35 @@ List of currently avaliable plugins:
 - `theme-materia`
 - `theme-oomox`
 
+### Generate themes
+
+Each icon and theme plugin also has a `generate` function, which can be used to create a derivation which will build a theme or icon pack from an oomox theme file.
+
+Sample usage:
+
+``` nix
+{
+  myTheme = oomoxPlugins.theme-oomox.generate {
+    name = "my-theme";
+    src = ./my-theme.theme;
+  };
+}
+```
+
+In this example, `myTheme` will be a package containing your theme, at `share/themes` (or `share/icons` for icon packs).
+
+All plugins require the following parameters:
+
+- `name`: The name of the theme,
+- `src`: Path to an oomox theme file. You can get this file by saving a theme in the oomox GUI, then copying it from `~/.config/oomox/colors/<theme_name>`.
+
+Some plugins accept additional parameters:
+
+`theme-oomox`:
+
+- `hidpi`: Whether to generate GTK+2 assets with 2x scaling.
+- `gtkVariant`: Which variant of the GTK+3 theme to build. One of `all`, `gtk3`, or `gtk320`
+
 ## License
 
 This project is licensed under the [MIT License](https://github.com/Sorixelle/nixmox/blob/master/LICENSE). Feel free to use this in your projects, dotfiles, anything you want.

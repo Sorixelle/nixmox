@@ -31,4 +31,7 @@ oomox.buildPlugin {
     cd ../numix-folders
     cp -r $numixFoldersSrc/* .
   '';
+
+  generateThemeType = "icon";
+  generateCmd = "/opt/oomox/plugins/icons_numix/change_color.sh";
 }

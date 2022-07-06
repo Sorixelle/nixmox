@@ -23,4 +23,7 @@ oomox.buildPlugin {
 
     substituteInPlace $out/bin/oomox-gnome-colors-icons-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
+
+  generateThemeType = "icon";
+  generateCmd = "/bin/oomox-gnome-colors-icons-cli";
 }

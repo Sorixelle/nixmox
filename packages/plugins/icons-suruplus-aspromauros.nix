@@ -20,4 +20,7 @@ oomox.buildPlugin {
     cd suru-plus-aspromauros
     cp -r $suruplusAspromaurosIconsSrc/* .
   '';
+
+  generateThemeType = "icon";
+  generateCmd = "/opt/oomox/plugins/icons_suruplus_aspromauros/change_color.sh";
 }

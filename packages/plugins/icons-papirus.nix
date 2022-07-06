@@ -20,4 +20,7 @@ oomox.buildPlugin {
     cd papirus-icon-theme
     cp -r $papirusIconsSrc/* .
   '';
+
+  generateThemeType = "icon";
+  generateCmd = "/opt/oomox/plugins/icons_papirus/change_color.sh";
 }

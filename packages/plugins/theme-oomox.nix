@@ -26,4 +26,10 @@ oomox.buildPlugin {
   postInstall = ''
     substituteInPlace $out/bin/oomox-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
+
+  generateCmd = "/bin/oomox-cli";
+  generateParamsSpec = {
+    hidpi = "hidpi";
+    gtkVariant = "make-opts";
+  };
 }

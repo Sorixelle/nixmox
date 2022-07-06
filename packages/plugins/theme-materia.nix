@@ -27,4 +27,6 @@ oomox.buildPlugin {
 
     substituteInPlace $out/bin/oomox-materia-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
+
+  generateCmd = "/bin/oomox-materia-cli";
 }

@@ -21,4 +21,7 @@ oomox.buildPlugin {
 
     substituteInPlace $out/bin/oomox-archdroid-icons-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
+
+  generateThemeType = "icon";
+  generateCmd = "/bin/oomox-archdroid-icons-cli";
 }

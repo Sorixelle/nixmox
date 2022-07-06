@@ -20,4 +20,7 @@ oomox.buildPlugin {
     cd suru-plus
     cp -r $suruplusIconsSrc/* .
   '';
+
+  generateThemeType = "icon";
+  generateCmd = "/opt/oomox/plugins/icons_suruplus/change_color.sh";
 }

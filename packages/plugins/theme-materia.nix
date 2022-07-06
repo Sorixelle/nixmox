@@ -1,4 +1,4 @@
-{ oomox, fetchFromGitHub, bc, meson, ninja, nodePackages, optipng, resvg }:
+{ oomox, fetchFromGitHub, bc, meson, ninja, nodePackages, optipng, parallel, resvg }:
 
 oomox.buildPlugin {
   name = "theme-materia";
@@ -11,7 +11,7 @@ oomox.buildPlugin {
   };
   materiaThemePatch = ./patches/theme-materia.patch;
 
-  propagatedBuildInputs = [ bc meson ninja nodePackages.sass optipng resvg ];
+  propagatedBuildInputs = [ bc meson ninja nodePackages.sass optipng parallel resvg ];
 
   dontUseMesonConfigure = true;
   dontUseNinjaBuild = true;

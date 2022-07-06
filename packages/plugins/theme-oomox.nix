@@ -22,4 +22,8 @@ oomox.buildPlugin {
     patch -p1 < $oomoxThemePatch
     popd
   '';
+
+  postInstall = ''
+    substituteInPlace $out/bin/oomox-cli --replace "/opt/oomox/" "$out/opt/oomox/"
+  '';
 }

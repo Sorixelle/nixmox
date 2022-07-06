@@ -20,5 +20,7 @@ oomox.buildPlugin {
     cp -r $gnomeColorsIconsSrc/* .
     chmod -R u+w *
     patch -p1 < $gnomeColorsIconsPatch
+
+    substituteInPlace $out/bin/oomox-gnome-colors-icons-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
 }

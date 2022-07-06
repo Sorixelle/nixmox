@@ -24,5 +24,7 @@ oomox.buildPlugin {
     cp -r $materiaThemeSrc/* .
     chmod -R u+w *
     patch -p1 < $materiaThemePatch
+
+    substituteInPlace $out/bin/oomox-materia-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
 }

@@ -18,5 +18,7 @@ oomox.buildPlugin {
     cp -r $archdroidIconsSrc/* .
     chmod -R u+w *
     patch -p1 < $archdroidIconsPatch
+
+    substituteInPlace $out/bin/oomox-archdroid-icons-cli --replace "/opt/oomox/" "$out/opt/oomox/"
   '';
 }
